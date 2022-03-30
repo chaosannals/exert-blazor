@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\exert\blazor\WebAssemblyDemo\WebAssemblyDemo\bin\Release\net6.0\browser-wasm\publish\</_PublishTargetUrl>
+    <History>True|2022-03-30T14:14:38.6449633Z;False|2022-03-30T22:05:34.8864305+08:00;False|2022-03-30T22:01:29.8951470+08:00;True|2022-03-30T21:57:58.1686055+08:00;</History>
+  </PropertyGroup>
+</Project>
