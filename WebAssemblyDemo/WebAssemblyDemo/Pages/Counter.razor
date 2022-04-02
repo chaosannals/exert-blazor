@@ -1,4 +1,5 @@
 ﻿@page "/counter"
+@inject HttpClient Http
 
 <PageTitle>Counter</PageTitle>
 
@@ -8,11 +9,21 @@
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
+<button class="btn btn-primary" @onclick="PostApi">PostApi</button>
+
 @code {
     private int currentCount = 0;
 
     private void IncrementCount()
     {
         currentCount++;
+    }
+
+    private async Task PostApi()
+    {
+        await Http.PostAsJsonAsync("/api", new
+        {
+            Id=123
+        });
     }
 }
