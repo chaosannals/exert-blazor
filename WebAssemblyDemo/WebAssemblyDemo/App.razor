@@ -1,12 +1,33 @@
-﻿<Router AppAssembly="@typeof(App).Assembly">
-    <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
-        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
-    </Found>
-    <NotFound>
-        <PageTitle>Not found</PageTitle>
-        <LayoutView Layout="@typeof(MainLayout)">
-            <p role="alert">Sorry, there's nothing at this address.</p>
-        </LayoutView>
-    </NotFound>
-</Router>
+﻿<BootstrapBlazorRoot>
+    <CascadingAuthenticationState>
+        <Router AppAssembly="@typeof(App).Assembly"
+            OnNavigateAsync="@OnRouteNavigateAsync">
+            <Found Context="routeData">
+                <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+                <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+            </Found>
+            <NotFound>
+                <PageTitle>Not found</PageTitle>
+                <LayoutView Layout="@typeof(MainLayout)">
+                    <p role="alert">Sorry, there's nothing at this address.</p>
+                </LayoutView>
+            </NotFound>
+        </Router>
+    </CascadingAuthenticationState>
+    
+</BootstrapBlazorRoot>
+
+@code {
+    [CascadingParameter]
+    private Task<AuthenticationState>? authenticationStateTask { get; set; }
+
+    private async Task OnRouteNavigateAsync(NavigationContext nc)
+    {
+        if (authenticationStateTask != null)
+        {
+            var state = await authenticationStateTask;
+            System.Console.WriteLine("Status: {0}", state.User.Identity);
+        }
+        System.Console.WriteLine("RouteNaviage: {0}", nc.Path);
+    }
+}

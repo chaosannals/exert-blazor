@@ -1,19 +1,19 @@
-﻿{
+{
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:6525",
-      "sslPort": 44308
+      "applicationUrl": "http://localhost:15474",
+      "sslPort": 44322
     }
   },
   "profiles": {
-    "WebAssemblyDemo": {
+    "WebAssemblyAuthDemo": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "launchBrowser": false,
+      "launchBrowser": true,
       "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}",
-      "applicationUrl": "https://localhost:17025;http://localhost:15025",
+      "applicationUrl": "https://localhost:7067;http://localhost:5067",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

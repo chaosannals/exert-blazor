@@ -1,0 +1,20 @@
+﻿<h3>CounterBox</h3>
+
+<div>
+    <span>box: </span>
+    <span>@CurrentCount</span>
+    <Button @onclick="onClickBoxClick">box click</Button>
+</div>
+
+@code {
+    [CascadingParameter(Name ="CurrentCount")]
+    public int CurrentCount { get; set; }
+
+    [Parameter]
+    public EventCallback<int> OnCurrentCountInc { get; set; }
+
+    private async void onClickBoxClick()
+    {
+        await OnCurrentCountInc.InvokeAsync(++CurrentCount);
+    }
+}

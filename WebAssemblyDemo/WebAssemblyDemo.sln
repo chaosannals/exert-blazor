@@ -5,7 +5,9 @@ VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAssemblyDemo", "WebAssemblyDemo\WebAssemblyDemo.csproj", "{5D9EE6A2-7A7F-4F60-8DFF-ED471000CF85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendDemo", "BackendDemo\BackendDemo.csproj", "{F6FA64D6-8DFB-4428-9273-BF9A4FD4E73E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackendDemo", "BackendDemo\BackendDemo.csproj", "{F6FA64D6-8DFB-4428-9273-BF9A4FD4E73E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAssemblyAuthDemo", "WebAssemblyAuthDemo\WebAssemblyAuthDemo.csproj", "{1D39ED17-8525-40B5-B6B4-3DC92D7CF051}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{F6FA64D6-8DFB-4428-9273-BF9A4FD4E73E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6FA64D6-8DFB-4428-9273-BF9A4FD4E73E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6FA64D6-8DFB-4428-9273-BF9A4FD4E73E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D39ED17-8525-40B5-B6B4-3DC92D7CF051}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D39ED17-8525-40B5-B6B4-3DC92D7CF051}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D39ED17-8525-40B5-B6B4-3DC92D7CF051}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D39ED17-8525-40B5-B6B4-3DC92D7CF051}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

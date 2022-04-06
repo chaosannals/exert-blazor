@@ -1,6 +1,10 @@
 ﻿using BackendDemo;
+using Microsoft.AspNetCore.Builder;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddAuthentication();
+builder.Services.AddAuthorization();
+
 var app = builder.Build();
 
 // 调试模式
@@ -22,5 +26,8 @@ Func<Task<IResult>> api = async () =>
 };
 
 app.MapPost("/api", api);
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.Run();

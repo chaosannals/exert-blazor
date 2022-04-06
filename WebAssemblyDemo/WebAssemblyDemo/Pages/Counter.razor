@@ -1,5 +1,6 @@
 ﻿@page "/counter"
 @inject HttpClient Http
+@using WebAssemblyDemo.Pages.CounterPage;
 
 <PageTitle>Counter</PageTitle>
 
@@ -11,12 +12,28 @@
 
 <button class="btn btn-primary" @onclick="PostApi">PostApi</button>
 
+<button class="btn btn-primary" @onclick="PopMessage">消息框</button>
+
+<CascadingValue Name="CurrentCount" Value="@currentCount">
+    <CounterBox OnCurrentCountInc="onCurrentCountInc"/>
+</CascadingValue>
+
+<!--
+<Message @ref="Message" Placement="Placement.Bottom" />
+-->
+
+
 @code {
     private int currentCount = 0;
 
     private void IncrementCount()
     {
         currentCount++;
+    }
+
+    private void onCurrentCountInc(int i)
+    {
+        currentCount = i;
     }
 
     private async Task PostApi()
