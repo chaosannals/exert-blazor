@@ -4,8 +4,10 @@ using Microsoft.AspNetCore.Builder;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAuthentication();
 builder.Services.AddAuthorization();
+builder.Services.AddMvc();
 
 var app = builder.Build();
+
 
 // 调试模式
 if (app.Environment.IsDevelopment())
