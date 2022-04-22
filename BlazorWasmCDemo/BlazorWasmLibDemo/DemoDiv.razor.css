@@ -1,0 +1,25 @@
+﻿.demo-div {
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 800px;
+    height: 600px;
+    border: 2px dashed red;
+    margin: 1em 0;
+    background-image: url('background.png');
+}
+
+.demo-div-button-group {
+    width: 100%;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.demo-div-frame {
+    overflow: auto;
+    width: 100%;
+    flex-grow: 1;
+    flex-shrink: 1;
+}

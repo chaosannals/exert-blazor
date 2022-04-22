@@ -1,0 +1,92 @@
+﻿@using Microsoft.JSInterop
+@inject IJSRuntime JSR
+@implements IAsyncDisposable
+
+<div class="demo-div">
+    <div class="demo-div-button-group">
+        <button @onclick="OnClickAdd">+</button>
+        <span>x: @ix</span>
+        <span>y: @iy</span>
+    </div>
+    <div class="demo-div-frame">
+        <div class="demo-div-frame-content">
+            @for(int i = 0; i < Items?.Count; ++i)
+            {
+                var item = new Item<string> { Index=i, Value=Items[i] }; // ref 和 lambda 里面 i 会惰性求值导致部分拿到的是最后 i 值
+                <div @ref="ItemReferences[item.Index]" @onclick="@(async e => {await OnClickItem(e, item);})">@item.Value</div>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    private class Item<T>
+    {
+        public int Index { get; set; }
+        public T? Value { get; set; }
+    }
+
+    private DemoWatchList<string>? items;
+    private DemoLazyJsModule<DemoDiv>? js;
+    private int ix = 0;
+    private int iy = 0;
+
+    [Parameter]
+    public List<string>? Items {
+        get => items;
+        set
+        {
+            items = value is null ? null : new DemoWatchList<string>(value, OnAdd);
+        }
+    }
+
+    private ElementReference[] ItemReferences { get; set; } = new ElementReference[0];
+
+    [Parameter]
+    public EventCallback<List<string>?> ItemsChanged { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        js = new DemoLazyJsModule<DemoDiv>(JSR);
+        items = new DemoWatchList<string>(OnAdd);
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (js != null)
+        {
+            await js.DisposeAsync();
+        }
+    }
+
+    private async Task OnClickAdd(MouseEventArgs e)
+    {
+        var list = Items as DemoWatchList<string>;
+        list?.Add(Guid.NewGuid().ToString("X"));
+        Console.WriteLine("{0} {1}", ItemReferences.GetHashCode(), ItemReferences.Length);
+        await ItemsChanged.InvokeAsync(Items);
+    }
+
+    private async Task OnClickItem(MouseEventArgs e, Item<string> item)
+    {
+        var er = ItemReferences[item.Index];
+        Console.WriteLine("{0} {1} {2} {3}", item.Index, er.GetHashCode(), er.Id, er.Context);
+        if (js != null)
+        {
+            ix = await js.CallAsync<int>("getLeft", er);
+            iy = await js.CallAsync<int>("getTop", er);
+        }
+        // StateHasChanged();
+    }
+
+    public void OnAdd(DemoWatchList<string> list, string v)
+    {
+        Console.WriteLine("OnAdd");
+        var nir = new ElementReference[list.Count];
+        for (int i = 0; i < ItemReferences.Length; ++i){
+            nir[i] = ItemReferences[i];
+        }
+        ItemReferences = nir;
+    }
+}

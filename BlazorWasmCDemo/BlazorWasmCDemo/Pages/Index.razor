@@ -1,0 +1,29 @@
+﻿@page "/"
+@using System.Reflection;
+
+<PageTitle>Index</PageTitle>
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+<h1>lib demo</h1>
+
+<DemoDiv></DemoDiv>
+
+<ul>
+    <li>Name: @assemblyName?.Name</li>
+    <li>Version: @assemblyName?.Version</li>
+    <li>CultureName: @assemblyName?.CultureName</li>
+    <li>FullName: @assemblyName?.FullName</li>
+    <li>ContentType: @assemblyName?.ContentType</li>
+</ul>
+
+
+@code {
+    private AssemblyName? assemblyName;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        assemblyName = ExampleJsInterop.AssemblyName;
+    }
+}
