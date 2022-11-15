@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <EnableDefaultItems>false</EnableDefaultItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Reports\RdlReport1.rdlx"/>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\launchSettings.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="_Imports.razor" />
+    <Content Include="App.razor" />
+    <Content Include="appsettings.json" />
+    <Content Include="appsettings.Development.json" />
+    <Content Include="ar-blazor-viewer-locale.json" />
+    <Content Include="Pages\_Host.cshtml" />
+    <Content Include="Pages\Index.razor" />
+    <Content Include="wwwroot\favicon.ico" />
+    <Content Include="wwwroot\css\site.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="GrapeCity.ActiveReports.Aspnetcore.Viewer" Version="16.0.2" />
+    <PackageReference Include="GrapeCity.ActiveReports.Blazor.Viewer" Version="16.0.2" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Designer Sample</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!-- No Virtual Directory -->
+    <base href="/design">
+    <!-- designer-related css -->
+    <!-- <link rel="stylesheet" href="/design/vendor/css/bootstrap.min.css" /> -->
+    <link rel="stylesheet" href="/design/vendor/css/fonts-googleapis.css" type="text/css">
+    <link rel="stylesheet" href="/design/web-designer.css" />
+    </head>
+    <body>
+        <!-- designer-related js -->
+    <script src="/design/web-designer.js"></script>
+    <!-- designer root div -->
+    <div id="designer-id" style="width: 100%; height: 100%;"></div>
+    <script>
+        // create designer options
+        var designerOptions = GrapeCity.ActiveReports.WebDesigner.createDesignerOptions();
+
+        /* Optional: Save Report */
+        designerOptions.saveButton.visible = true;
+
+        /* Optional: Save Report As */
+        designerOptions.saveAsButton.visible = true;
+
+        /* Optional: Open Report */
+        designerOptions.openButton.visible = true;
+
+        /* Optional: Add/Edit/Remove Data Sets */
+        designerOptions.dataTab.dataSets.canModify = true;
+
+        /* Optional: Add/Edit/Remove Data Sources */
+        designerOptions.dataTab.dataSources.canModify = true;
+
+        // render designer application
+        GrapeCity.ActiveReports.WebDesigner.renderApplication('designer-id', designerOptions);
+    </script>
+    </body>
+</html>
